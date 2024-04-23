@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class GradeCalculator {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to Grade Calculator!");
+        System.out.println("How many subjects do you have?");
+        int numberOfSubjects = scanner.nextInt();
+
+        int sumSubjects = 0;
+        for (int i = 0; i < numberOfSubjects; i++) {
+            int subjectNumber = i + 1;
+            System.out.println("Enter marks for Subject " + subjectNumber + ":");
+            int marks = scanner.nextInt();
+            if (marks < 0 || marks > 100) {
+                System.out.println("Invalid marks entered for Subject " + subjectNumber + ". Marks should be between 0 and 100.");
+                return; // Exit the program if invalid marks are entered
+            }
+            sumSubjects += marks;
+        }
+
+        double percentage = (double) sumSubjects / (numberOfSubjects * 100) * 100; // Calculate percentage with floating-point division
+        System.out.println("Sum of all subjects: " + sumSubjects);
+        System.out.println("Percentage: " + String.format("%.2f", percentage) + "%");
+
+        // Determine grade based on percentage
+        String grade;
+        if (percentage < 40) {
+            grade = "Failed";
+        } else if (percentage < 60) {
+            grade = "C";
+        } else if (percentage < 80) {
+            grade = "B";
+        } else {
+            grade = "A++";
+        }
+
+        System.out.println("Grade: " + grade);
+    }
+}
